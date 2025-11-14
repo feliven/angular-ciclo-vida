@@ -1,0 +1,31 @@
+.add-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+
+  padding: 1rem;
+}
+
+.add-item input {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.4rem;
+  box-shadow: 2px 2px 2px #00000050;
+}
+
+.add-item input::placeholder {
+  color: #8a8a8a;
+  font-size: 0.55rem;
+  text-align: center;
+}
+
+.add-item button {
+  background: #3ae0ae;
+  border: none;
+  border-radius: 0.4rem;
+  box-shadow: 2px 2px 2px #00000050;
+  color: white;
+  font-size: 0.7rem;
+  padding: 0.4rem;
+}
