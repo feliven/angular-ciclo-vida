@@ -1,4 +1,5 @@
-import { Component, input } from '@angular/core';
+import { Component, input, OnChanges, SimpleChanges } from '@angular/core';
+
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Item } from '../../interfaces/item.interface';
@@ -10,9 +11,13 @@ import { Item } from '../../interfaces/item.interface';
   styleUrl: './item.component.css',
   standalone: true,
 })
-export class ItemComponent {
+export class ItemComponent implements OnChanges {
   item = input<Item>();
 
   faPen = faPen;
   faTrash = faTrash;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('OnChanges');
+  }
 }
