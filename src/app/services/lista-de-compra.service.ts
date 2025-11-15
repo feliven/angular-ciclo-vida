@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ListaDeCompraService {
-  private listaDeCompra: Item[] = [
+  private listaDeCompras: Item[] = [
     {
       id: 1,
       nome: 'Queijo prato',
@@ -30,7 +30,7 @@ export class ListaDeCompraService {
     console.log('Instanciando dependências necessárias para o serviço.');
   }
 
-  getListaDeCompra() {
-    return this.listaDeCompra;
+  getListaDeCompras() {
+    return this.listaDeCompras;
   }
 }
