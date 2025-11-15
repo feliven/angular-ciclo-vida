@@ -5,17 +5,17 @@
 }
 
 .container {
-  max-width: 328px;
+  max-width: 400px;
   margin: 0 auto;
 }
 
 .lista {
   background: white;
   padding: 1rem;
-  width: 328px;
+  width: 400px;
 }
 
-.lista h4 {
+.lista h2 {
   border-bottom: 1px solid blue;
   padding-bottom: 1rem;
   border-style: none none dashed none;
@@ -36,7 +36,7 @@
 }
 
 small {
-  font-size: 0.5rem;
+  font-size: 0.75rem;
 }
 
 .checkbox {
