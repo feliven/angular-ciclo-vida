@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 
 import { InputComponent } from './components/input/input.component';
 import { Item } from './interfaces/item.interface';
 import { ListaDeCompraService } from './services/lista-de-compra.service';
+import { ItemComponent } from './components/item/item.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, InputComponent],
+  imports: [InputComponent, ItemComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

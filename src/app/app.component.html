@@ -3,6 +3,9 @@
   <div class="container">
     <div class="lista">
       <h4 class="title-list">Lista de Compras</h4>
+      @for (itemLista of listaDeCompras; track $index) {
+      <app-item [item]="itemLista"></app-item>
+      }
     </div>
   </div>
 </section>

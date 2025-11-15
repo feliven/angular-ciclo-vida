@@ -1,7 +1,15 @@
-<input class="checkbox" type="checkbox" name="comprado" id="comprado" />
-<p class="description">Nome do item</p>
+<input
+  class="checkbox"
+  type="checkbox"
+  name="comprado"
+  id="comprado"
+  [checked]="item()?.comprado"
+/>
+<p class="description">{{ item()?.nome }}</p>
 <div class="d-contents">
+  @if (item()?.comprado===false) {
   <fa-icon class="delete-icon" [icon]="faTrash"></fa-icon>
   <fa-icon class="edit-icon" [icon]="faPen"></fa-icon>
+  }
 </div>
-<small class="date">00/10/2000</small>
+<small class="date">{{ item()?.data }}</small>
