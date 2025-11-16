@@ -1,4 +1,4 @@
-import { Component, input, OnInit, output } from '@angular/core';
+import { Component, DoCheck, input, OnInit, output } from '@angular/core';
 
 import { InputComponent } from './components/input/input.component';
 import { Item } from './interfaces/item.interface';
@@ -11,7 +11,7 @@ import { ItemComponent } from './components/item/item.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, DoCheck {
   title = 'ciclo-vida';
 
   listaDeCompras!: Item[];
@@ -22,6 +22,11 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.listaDeCompras = this.listaService.getListaDeCompras();
     console.log(this.listaDeCompras);
+  }
+
+  ngDoCheck(): void {
+    console.log('DoCheck');
+    this.listaService.atualizarLocalStorage();
   }
 
   editarItem(item: Item) {

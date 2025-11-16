@@ -53,7 +53,7 @@ export class ListaDeCompraService {
   setItemLista(nomeItem: string): void {
     const novoItem = this.criarItem(nomeItem);
     this.listaDeCompras.push(novoItem);
-    this.atualizarLocalStorage();
+    // this.atualizarLocalStorage();
   }
 
   getItemLista(id: number): Item | undefined {
@@ -75,7 +75,7 @@ export class ListaDeCompraService {
     const indice = this.listaDeCompras.indexOf(itemAntigo);
     this.listaDeCompras.splice(indice, 1, itemAtualizado);
 
-    this.atualizarLocalStorage();
+    // this.atualizarLocalStorage();
   }
 
   deleteItemLista(id: number): void {
@@ -88,7 +88,7 @@ export class ListaDeCompraService {
 
     console.log(this.listaDeCompras);
 
-    this.atualizarLocalStorage();
+    // this.atualizarLocalStorage();
   }
 
   atualizarLocalStorage() {
