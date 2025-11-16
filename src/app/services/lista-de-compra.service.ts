@@ -59,8 +59,16 @@ export class ListaDeCompraService {
     return undefined;
   }
 
-  editItemLista(itemAtualizado: Item) {
-    this.listaDeCompras;
+  editItemLista(itemAntigo: Item, nomeAtualizado: string) {
+    const itemAtualizado: Item = {
+      id: itemAntigo.id,
+      nome: nomeAtualizado,
+      data: itemAntigo.data,
+      comprado: itemAntigo.comprado,
+    };
+
+    const indice = this.listaDeCompras.indexOf(itemAntigo);
+    this.listaDeCompras.splice(indice, 1, itemAtualizado);
   }
 
   deleteItemLista(id: number): void {

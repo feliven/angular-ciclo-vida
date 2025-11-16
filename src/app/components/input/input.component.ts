@@ -4,6 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { ListaDeCompraService } from '../../services/lista-de-compra.service';
 import { Item } from '../../interfaces/item.interface';
 
+enum textoBotaoSalvar {
+  SALVAR_ITEM = 'Salvar item',
+  SALVAR_EDICOES = 'Salvar edições',
+}
+
 @Component({
   selector: 'app-input',
   imports: [FormsModule],
@@ -11,9 +16,11 @@ import { Item } from '../../interfaces/item.interface';
   styleUrl: './input.component.css',
 })
 export class InputComponent implements OnChanges {
-  itemParaEditar = input<Item>();
-
   nomeItem!: string;
+
+  itemParaEditar = input<Item>();
+  modoEdicao = false;
+  textoBotao = textoBotaoSalvar.SALVAR_ITEM;
 
   constructor(private listaService: ListaDeCompraService) {}
 
@@ -21,6 +28,16 @@ export class InputComponent implements OnChanges {
     console.log(this.nomeItem);
     this.listaService.setItemLista(this.nomeItem);
     this.limparCampo();
+  }
+
+  editarItem() {
+    const itemParaEditar = this.itemParaEditar();
+    itemParaEditar
+      ? this.listaService.editItemLista(itemParaEditar, this.nomeItem)
+      : '';
+    this.limparCampo();
+    this.modoEdicao = false;
+    this.textoBotao = textoBotaoSalvar.SALVAR_ITEM;
   }
 
   limparCampo(): void {
@@ -32,7 +49,9 @@ export class InputComponent implements OnChanges {
     console.log(changes['itemParaEditar'].currentValue);
     console.log(changes['itemParaEditar'].isFirstChange());
 
-    if (changes['itemParaEditar']) {
+    if (!changes['itemParaEditar'].isFirstChange()) {
+      this.modoEdicao = true;
+      this.textoBotao = textoBotaoSalvar.SALVAR_EDICOES;
       this.nomeItem = this.itemParaEditar()?.nome ?? '';
     }
   }

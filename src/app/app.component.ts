@@ -1,4 +1,4 @@
-import { Component, input, OnInit } from '@angular/core';
+import { Component, input, OnInit, output } from '@angular/core';
 
 import { InputComponent } from './components/input/input.component';
 import { Item } from './interfaces/item.interface';
@@ -26,7 +26,6 @@ export class AppComponent implements OnInit {
 
   editarItem(item: Item) {
     this.itemASerEditado = item;
-    this.listaService.editItemLista(item);
   }
 
   apagarItem(id: number) {
