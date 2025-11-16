@@ -20,6 +20,8 @@ import { Item } from '../../interfaces/item.interface';
 export class ItemComponent implements OnChanges {
   item = input<Item>();
   itemASerEditado = output<Item>();
+  itemParaMarcarDesmarcar = output<Item>();
+  // itemEstaMarcado = false;
   idDoItemASerApagado = output<number>();
 
   faPen = faPen;
@@ -35,6 +37,15 @@ export class ItemComponent implements OnChanges {
     const itemParaEnviar = this.item();
     if (itemParaEnviar) {
       this.itemASerEditado.emit(itemParaEnviar);
+    }
+  }
+
+  marcarDesmarcar() {
+    const item = this.item();
+    if (item) {
+      // this.itemEstaMarcado = !this.itemEstaMarcado;
+      item.comprado = !item.comprado;
+      this.itemParaMarcarDesmarcar.emit(item);
     }
   }
 

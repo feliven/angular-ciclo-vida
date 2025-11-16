@@ -78,6 +78,22 @@ export class ListaDeCompraService {
     // this.atualizarLocalStorage();
   }
 
+  marcarDesmarcarItem(item: Item) {
+    const marcarOuDesmarcar = !item.comprado;
+
+    console.log(marcarOuDesmarcar);
+
+    const itemAtualizado: Item = {
+      id: item.id,
+      nome: item.nome,
+      data: item.data,
+      comprado: marcarOuDesmarcar,
+    };
+
+    const indice = this.listaDeCompras.indexOf(item);
+    this.listaDeCompras.splice(indice, 1, itemAtualizado);
+  }
+
   deleteItemLista(id: number): void {
     const itemDoID = this.getItemLista(id);
 

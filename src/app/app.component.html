@@ -7,6 +7,7 @@
       track $index) {
       <app-item
         [item]="itemLista"
+        (itemParaMarcarDesmarcar)="marcarDesmarcarItem($event)"
         (itemASerEditado)="editarItem($event)"
         (idDoItemASerApagado)="apagarItem($event)"
       ></app-item>

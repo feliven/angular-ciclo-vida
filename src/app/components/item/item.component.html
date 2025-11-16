@@ -4,8 +4,14 @@
   name="comprado"
   id="comprado"
   [checked]="item()?.comprado"
+  (change)="marcarDesmarcar()"
 />
-<p class="description">{{ item()?.nome }}</p>
+
+<!-- isso se chama style-binding, recurso do angular que permite adicionar ou remover uma classe CSS de forma dinâmica -->
+<p class="description" [class.line-through]="item()?.comprado">
+  {{ item()?.nome }}
+</p>
+
 <div class="d-contents">
   @if (item()?.comprado === false) {
   <fa-icon

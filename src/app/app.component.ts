@@ -33,6 +33,10 @@ export class AppComponent implements OnInit, DoCheck {
     this.itemASerEditado = item;
   }
 
+  marcarDesmarcarItem(item: Item) {
+    this.itemASerEditado;
+  }
+
   apagarItem(id: number) {
     this.listaService.deleteItemLista(id);
   }
