@@ -7,9 +7,13 @@
 />
 <p class="description">{{ item()?.nome }}</p>
 <div class="d-contents">
-  @if (item()?.comprado===false) {
-  <fa-icon class="delete-icon" [icon]="faTrash"></fa-icon>
-  <fa-icon class="edit-icon" [icon]="faPen"></fa-icon>
+  @if (item()?.comprado === false) {
+  <fa-icon
+    (click)="apagarItem()"
+    class="delete-icon"
+    [icon]="faTrash"
+  ></fa-icon>
+  <fa-icon (click)="editarItem()" class="edit-icon" [icon]="faPen"></fa-icon>
   }
 </div>
 <small class="date">{{ item()?.data }}</small>

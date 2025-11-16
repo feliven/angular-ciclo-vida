@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, input, OnInit } from '@angular/core';
 
 import { InputComponent } from './components/input/input.component';
 import { Item } from './interfaces/item.interface';
@@ -21,5 +21,13 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.listaDeCompras = this.listaService.getListaDeCompras();
     console.log(this.listaDeCompras);
+  }
+
+  editarItem(item: Item) {
+    this.listaService.editItemLista(item);
+  }
+
+  apagarItem(id: number) {
+    this.listaService.deleteItemLista(id);
   }
 }

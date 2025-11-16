@@ -4,7 +4,11 @@
     <div class="lista">
       <h2 class="title-list">Lista de Compras</h2>
       @for (itemLista of listaDeCompras; track $index) {
-      <app-item [item]="itemLista"></app-item>
+      <app-item
+        [item]="itemLista"
+        (itemASerEditado)="editarItem($event)"
+        (idDoItemASerApagado)="apagarItem($event)"
+      ></app-item>
       }
     </div>
   </div>

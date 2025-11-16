@@ -50,4 +50,27 @@ export class ListaDeCompraService {
     const novoItem = this.criarItem(nomeItem);
     this.listaDeCompras.push(novoItem);
   }
+
+  getItemLista(id: number): Item | undefined {
+    const itemDoID = this.listaDeCompras.find((item) => item.id === id);
+    if (itemDoID) {
+      return itemDoID;
+    }
+    return undefined;
+  }
+
+  editItemLista(itemAtualizado: Item) {
+    this.listaDeCompras;
+  }
+
+  deleteItemLista(id: number): void {
+    const itemDoID = this.getItemLista(id);
+
+    if (itemDoID) {
+      const indice = this.listaDeCompras.indexOf(itemDoID);
+      this.listaDeCompras.splice(indice, 1);
+    }
+
+    console.log(this.listaDeCompras);
+  }
 }
