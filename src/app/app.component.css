@@ -66,6 +66,7 @@ small {
   justify-self: start;
   grid-area: date;
 }
+
 .line-through {
   text-decoration: line-through;
 }

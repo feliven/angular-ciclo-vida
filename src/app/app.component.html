@@ -3,12 +3,14 @@
   <div class="container">
     <div class="lista">
       <h2 class="title-list">Lista de Compras</h2>
-      @for (itemLista of listaDeCompras; track $index) {
+      @if (listaDeCompras.length !== 0) { @for (itemLista of listaDeCompras;
+      track $index) {
       <app-item
         [item]="itemLista"
         (itemASerEditado)="editarItem($event)"
         (idDoItemASerApagado)="apagarItem($event)"
       ></app-item>
+      } } @else { <small> Lista VAZIA </small>
       }
     </div>
   </div>
