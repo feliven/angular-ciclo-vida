@@ -2,6 +2,7 @@ import {
   Component,
   input,
   OnChanges,
+  OnDestroy,
   output,
   SimpleChanges,
 } from '@angular/core';
@@ -17,7 +18,7 @@ import { Item } from '../../interfaces/item.interface';
   styleUrl: './item.component.css',
   standalone: true,
 })
-export class ItemComponent implements OnChanges {
+export class ItemComponent implements OnChanges, OnDestroy {
   item = input<Item>();
   itemASerEditado = output<Item>();
   itemParaMarcarDesmarcar = output<Item>();
@@ -31,6 +32,10 @@ export class ItemComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log('OnChanges');
+  }
+
+  ngOnDestroy(): void {
+    console.log('acabou pra mim');
   }
 
   editarItem() {
