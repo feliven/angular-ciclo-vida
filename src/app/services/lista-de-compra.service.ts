@@ -95,17 +95,22 @@ export class ListaDeCompraService {
   }
 
   deleteItemLista(id: number): void {
-    const itemDoID = this.getItemLista(id);
-
-    if (itemDoID) {
-      const indice = this.listaDeCompras.indexOf(itemDoID);
-      this.listaDeCompras.splice(indice, 1);
-    }
-
-    console.log(this.listaDeCompras);
-
-    // this.atualizarLocalStorage();
+    const indice = this.listaDeCompras.findIndex((item) => id === item.id);
+    this.listaDeCompras.splice(indice, 1);
   }
+
+  // deleteItemLista(id: number): void {
+  //   const itemDoID = this.getItemLista(id);
+
+  //   if (itemDoID) {
+  //     const indice = this.listaDeCompras.indexOf(itemDoID);
+  //     this.listaDeCompras.splice(indice, 1);
+  //   }
+
+  //   console.log(this.listaDeCompras);
+
+  //   // this.atualizarLocalStorage();
+  // }
 
   atualizarLocalStorage() {
     localStorage.setItem('itens', JSON.stringify(this.listaDeCompras));
