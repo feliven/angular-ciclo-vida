@@ -2,12 +2,16 @@
   <app-input [itemParaEditar]="itemASerEditado"> </app-input>
   <div class="container">
     <div class="lista">
-      <h2 class="title-list">Lista de Compras</h2>
+      <div class="header-lista">
+        <h2 class="title-list">Lista de Compras</h2>
+        <button class="btn-header" type="button" (click)="limparLista()">
+          <small>Limpar lista</small>
+        </button>
+      </div>
       @if (listaDeCompras.length !== 0) { @for (itemLista of listaDeCompras;
       track $index) {
       <app-item
         [item]="itemLista"
-        (itemParaMarcarDesmarcar)="marcarDesmarcarItem($event)"
         (itemASerEditado)="editarItem($event)"
         (idDoItemASerApagado)="apagarItem($event)"
       ></app-item>
