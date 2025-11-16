@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
   title = 'ciclo-vida';
 
   listaDeCompras!: Item[];
+  itemASerEditado!: Item;
 
   constructor(private listaService: ListaDeCompraService) {}
 
@@ -24,6 +25,7 @@ export class AppComponent implements OnInit {
   }
 
   editarItem(item: Item) {
+    this.itemASerEditado = item;
     this.listaService.editItemLista(item);
   }
 
