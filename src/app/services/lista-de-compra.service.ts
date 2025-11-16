@@ -115,4 +115,14 @@ export class ListaDeCompraService {
   atualizarLocalStorage() {
     localStorage.setItem('itens', JSON.stringify(this.listaDeCompras));
   }
+
+  limparLista() {
+    this.listaDeCompras = [];
+    localStorage.clear();
+
+    // When you call limparLocalStorage(), it clears localStorage,
+    // but the listaDeCompras array in memory still contains the old data.
+    // So when components read from the service, they're getting
+    // the cached array, not the cleared localStorage.
+  }
 }

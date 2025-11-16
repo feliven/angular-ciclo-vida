@@ -39,5 +39,6 @@ export class AppComponent implements OnInit, DoCheck {
 
   limparLista() {
     this.listaDeCompras = [];
+    this.listaService.limparLista();
   }
 }
