@@ -1,4 +1,4 @@
-import { Component, DoCheck, input, OnInit, output } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 
 import { InputComponent } from './components/input/input.component';
 import { Item } from './interfaces/item.interface';
@@ -31,6 +31,10 @@ export class AppComponent implements OnInit, DoCheck {
 
   editarItem(item: Item) {
     this.itemASerEditado = item;
+  }
+
+  marcarDesmarcarItem(item: Item) {
+    this.listaService.editItemLista(item, item.nome);
   }
 
   apagarItem(id: number) {

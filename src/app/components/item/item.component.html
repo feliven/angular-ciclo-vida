@@ -7,7 +7,8 @@
   (change)="marcarDesmarcar()"
 />
 
-<!-- isso se chama style-binding, recurso do angular que permite adicionar ou remover uma classe CSS de forma dinâmica -->
+<!-- isso se chama style-binding, recurso do angular que permite 
+ adicionar ou remover uma classe CSS de forma dinâmica -->
 <p class="description" [class.line-through]="item()?.comprado">
   {{ item()?.nome }}
 </p>

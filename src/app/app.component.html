@@ -9,10 +9,11 @@
         </button>
       </div>
       @if (listaDeCompras.length !== 0) { @for (itemLista of listaDeCompras;
-      track $index) {
+      track itemLista.id) {
       <app-item
         [item]="itemLista"
         (itemASerEditado)="editarItem($event)"
+        (itemParaMarcarDesmarcar)="marcarDesmarcarItem($event)"
         (idDoItemASerApagado)="apagarItem($event)"
       ></app-item>
       } } @else { <small> Lista VAZIA </small>
@@ -20,3 +21,5 @@
     </div>
   </div>
 </section>
+<!-- you're using track $index which works, but for better performance with data mutations, 
+ consider tracking by itemLista.id -->
