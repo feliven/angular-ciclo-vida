@@ -27,9 +27,14 @@ export class ListaDeCompraService {
     },
   ];
 
-  private listaDeCompras: Item[] = JSON.parse(
-    localStorage.getItem('itens') || '[]'
-  );
+  // localStorage.getItem('itens') could throw during JSON.parse() if data is corrupted
+  private listaDeCompras: Item[] = (() => {
+    try {
+      return JSON.parse(localStorage.getItem('itens') || '[]');
+    } catch {
+      return [];
+    }
+  })();
 
   constructor() {
     console.log('Instanciando dependências necessárias para o serviço.');
@@ -40,7 +45,17 @@ export class ListaDeCompraService {
   }
 
   criarItem(nomeItem: string): Item {
-    const novoID = this.listaDeCompras.length + 1;
+    // const novoID = this.listaDeCompras.length + 1;
+    //
+    // This breaks when items are deleted.
+    // If you have IDs [1,2,3] and delete ID 2,
+    // the next item will be ID 3 (duplicate).
+
+    const novoID =
+      this.listaDeCompras.length > 0
+        ? Math.max(...this.listaDeCompras.map((item) => item.id)) + 1
+        : 1;
+
     const item: Item = {
       id: novoID,
       nome: nomeItem,
@@ -65,6 +80,26 @@ export class ListaDeCompraService {
   }
 
   editItemLista(itemAntigo: Item, nomeAtualizado: string) {
+    const indice = this.listaDeCompras.indexOf(itemAntigo);
+
+    if (indice === -1) {
+      console.warn(`Item with ID ${itemAntigo.id} not found in list`);
+      return;
+    }
+
+    const itemAtualizado: Item = {
+      id: itemAntigo.id,
+      nome: nomeAtualizado,
+      data: itemAntigo.data,
+      comprado: itemAntigo.comprado,
+    };
+
+    this.listaDeCompras.splice(indice, 1, itemAtualizado);
+  }
+
+  // editItemLista2() doesn't validate if item exists in array
+
+  editItemLista2(itemAntigo: Item, nomeAtualizado: string) {
     const itemAtualizado: Item = {
       id: itemAntigo.id,
       nome: nomeAtualizado,
@@ -96,21 +131,29 @@ export class ListaDeCompraService {
 
   deleteItemLista(id: number): void {
     const indice = this.listaDeCompras.findIndex((item) => id === item.id);
+    if (indice !== -1) {
+      this.listaDeCompras.splice(indice, 1);
+    }
+  }
+
+  // deleteItemLista2() doesn't check if item exists (could splice at -1)
+  deleteItemLista2(id: number): void {
+    const indice = this.listaDeCompras.findIndex((item) => id === item.id);
     this.listaDeCompras.splice(indice, 1);
   }
 
-  // deleteItemLista(id: number): void {
-  //   const itemDoID = this.getItemLista(id);
+  deleteItemLista3(id: number): void {
+    const itemDoID = this.getItemLista(id);
 
-  //   if (itemDoID) {
-  //     const indice = this.listaDeCompras.indexOf(itemDoID);
-  //     this.listaDeCompras.splice(indice, 1);
-  //   }
+    if (itemDoID) {
+      const indice = this.listaDeCompras.indexOf(itemDoID);
+      this.listaDeCompras.splice(indice, 1);
+    }
 
-  //   console.log(this.listaDeCompras);
+    console.log(this.listaDeCompras);
 
-  //   // this.atualizarLocalStorage();
-  // }
+    // this.atualizarLocalStorage();
+  }
 
   atualizarLocalStorage() {
     localStorage.setItem('itens', JSON.stringify(this.listaDeCompras));
